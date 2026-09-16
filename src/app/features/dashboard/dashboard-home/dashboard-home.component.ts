@@ -5,9 +5,10 @@ import { NGXLogger } from 'ngx-logger';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 
 @Component({
-  selector: 'app-dashboard-home',
-  templateUrl: './dashboard-home.component.html',
-  styleUrls: ['./dashboard-home.component.css']
+    selector: 'app-dashboard-home',
+    templateUrl: './dashboard-home.component.html',
+    styleUrls: ['./dashboard-home.component.css'],
+    standalone: false
 })
 export class DashboardHomeComponent implements OnInit {
   currentUser: any;
