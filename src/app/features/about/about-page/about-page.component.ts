@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
     selector: 'app-about-page',
@@ -7,7 +7,5 @@ import { Component } from '@angular/core';
     standalone: false
 })
 export class AboutPageComponent {
-
-  constructor() { }
 
 }

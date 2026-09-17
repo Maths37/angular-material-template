@@ -1,10 +1,10 @@
-import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
+import {Router} from '@angular/router';
+import {Component, inject, OnInit} from '@angular/core';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import {Title} from '@angular/platform-browser';
 
-import { NotificationService } from 'src/app/core/services/notification.service';
-import { AuthenticationService } from 'src/app/core/services/auth.service';
+import {NotificationService} from 'src/app/core/services/notification.service';
+import {AuthenticationService} from 'src/app/core/services/auth.service';
 
 @Component({
     selector: 'app-password-reset-request',
@@ -13,43 +13,43 @@ import { AuthenticationService } from 'src/app/core/services/auth.service';
     standalone: false
 })
 export class PasswordResetRequestComponent implements OnInit {
+    form!: UntypedFormGroup;
+    loading!: boolean;
+    private email!: string;
+    private authService = inject(AuthenticationService);
+    private notificationService = inject(NotificationService);
+    private titleService = inject(Title);
+    private router = inject(Router);
 
-  private email!: string;
-  form!: UntypedFormGroup;
-  loading!: boolean;
+    ngOnInit() {
+        this.titleService.setTitle('angular-material-template - Password Reset Request');
 
-  constructor(private authService: AuthenticationService,
-    private notificationService: NotificationService,
-    private titleService: Title,
-    private router: Router) { }
+        this.form = new UntypedFormGroup({
+            email: new UntypedFormControl('', [Validators.required, Validators.email])
+        });
 
-  ngOnInit() {
-    this.titleService.setTitle('angular-material-template - Password Reset Request');
+        this.form.get('email')?.valueChanges
+            .subscribe((val: string) => {
+                this.email = val.toLowerCase();
+            });
+    }
 
-    this.form = new UntypedFormGroup({
-      email: new UntypedFormControl('', [Validators.required, Validators.email])
-    });
+    resetPassword() {
+        this.loading = true;
+        this.authService.passwordResetRequest(this.email)
+            .subscribe(
+                results => {
+                    this.router.navigate(['/auth/login']);
+                    this.notificationService.openSnackBar('Password verification mail has been sent to your email address.');
+                },
+                error => {
+                    this.loading = false;
+                    this.notificationService.openSnackBar(error.error);
+                }
+            );
+    }
 
-    this.form.get('email')?.valueChanges
-      .subscribe((val: string) => { this.email = val.toLowerCase(); });
-  }
-
-  resetPassword() {
-    this.loading = true;
-    this.authService.passwordResetRequest(this.email)
-      .subscribe(
-        results => {
-          this.router.navigate(['/auth/login']);
-          this.notificationService.openSnackBar('Password verification mail has been sent to your email address.');
-        },
-        error => {
-          this.loading = false;
-          this.notificationService.openSnackBar(error.error);
-        }
-      );
-  }
-
-  cancel() {
-    this.router.navigate(['/']);
-  }
+    cancel() {
+        this.router.navigate(['/']);
+    }
 }
