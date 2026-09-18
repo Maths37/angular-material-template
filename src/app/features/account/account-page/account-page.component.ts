@@ -1,5 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
+import {environment} from "../../../../environments/environment";
 
 @Component({
     selector: 'app-account-page',
@@ -11,6 +12,6 @@ export class AccountPageComponent implements OnInit {
     private titleService = inject(Title);
 
     ngOnInit() {
-        this.titleService.setTitle('angular-material-template - Account');
+        this.titleService.setTitle(environment.applicationName + " - " + $localize`:@@account.title:Account`);
     }
 }

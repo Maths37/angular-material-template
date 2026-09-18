@@ -3,6 +3,7 @@ import {Title} from '@angular/platform-browser';
 import {NGXLogger} from 'ngx-logger';
 import {NotificationService} from "../../../core/services/notification.service";
 import {AuthenticationService} from "../../../core/services/auth.service";
+import {environment} from "../../../../environments/environment";
 
 @Component({
     selector: 'app-dashboard-home',
@@ -18,8 +19,8 @@ export class DashboardHomeComponent implements OnInit {
     private logger = inject(NGXLogger);
 
     ngOnInit() {
+        this.titleService.setTitle(environment.applicationName + " - " + $localize`:@@dashboard.title:Dashboard`);
         this.currentUser = this.authService.getCurrentUser();
-        this.titleService.setTitle('angular-material-template - Dashboard');
         this.logger.log('Dashboard loaded');
 
         setTimeout(() => {

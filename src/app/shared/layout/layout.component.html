@@ -8,7 +8,7 @@
 
         <a [routerLink]="['/']" class="navbar-brand" matTooltip="Home">
             <h1>
-                angular-material-template
+                {{ environment.applicationName }}
             </h1>
         </a>
 
@@ -19,10 +19,10 @@
         </button>
         <mat-menu #notificationMenu="matMenu" [overlapTrigger]="false" xPosition="before" yPosition="above">
             <a mat-menu-item>
-                <span>You have new tasks</span>
+                <span i18n="@@top-bar.new-tasks">You have new tasks</span>
             </a>
             <a mat-menu-item>
-                <span>You have a new message</span>
+                <span i18n="@@top-bar.new-messages">You have new messages</span>
             </a>
         </mat-menu>
 
@@ -38,14 +38,14 @@
                 <div class="mat-line">
                     <mat-icon>person</mat-icon>
                 </div>
-                <p mat-line> Account </p>
+                <p i18n="@@account.title" mat-line>Account</p>
             </a>
 
             <a [routerLink]="['/auth/login']" mat-menu-item>
                 <div class="mat-line">
                     <mat-icon>exit_to_app</mat-icon>
                 </div>
-                <p mat-line> Log out </p>
+                <p i18n="@@logout.title" mat-line>Log out</p>
             </a>
         </mat-menu>
     </mat-toolbar>
@@ -56,7 +56,7 @@
                      [opened]="!mobileQuery.matches" class="sidenav" fixedTopGap="56">
 
             <mat-nav-list>
-                <h3 mat-subheader>Home</h3>
+                <h3 i18n="@@home.title" mat-subheader>Home</h3>
 
                 <a [routerLink]="['/dashboard']" mat-list-item routerLinkActive="active">
                     <div class="mat-line">
@@ -64,7 +64,7 @@
                             dashboard
                         </mat-icon>
                     </div>
-                    <p mat-line> Dashboard </p>
+                    <p i18n="@@dashboard.title" mat-line>Dashboard</p>
                 </a>
 
                 <a [routerLink]="['/customers']" mat-list-item routerLinkActive="active">
@@ -73,7 +73,7 @@
                             business
                         </mat-icon>
                     </div>
-                    <p mat-line> Customers </p>
+                    <p i18n="@@customers.title" mat-line>Customers</p>
                 </a>
                 <a [routerLink]="['/users']" mat-list-item routerLinkActive="active">
                     <div class="mat-line">
@@ -81,26 +81,26 @@
                             people
                         </mat-icon>
                     </div>
-                    <p mat-line> Users </p>
+                    <p i18n="@@users.title" mat-line>Users</p>
                 </a>
 
                 <a [routerLink]="['/account/profile']" mat-list-item>
                     <div class="mat-line">
                         <mat-icon>person</mat-icon>
                     </div>
-                    <p mat-line> Account </p>
+                    <p i18n="@@account.title" mat-line>Account</p>
                 </a>
 
                 <a [routerLink]="['/auth/login']" mat-list-item>
                     <div class="mat-line">
                         <mat-icon>exit_to_app</mat-icon>
                     </div>
-                    <p mat-line> Log out </p>
+                    <p i18n="@@logout.title" mat-line>Log out</p>
                 </a>
 
                 <mat-divider></mat-divider>
 
-                <h3 mat-subheader>Resources</h3>
+                <h3 i18n="@@resources.title" mat-subheader>Resources</h3>
 
                 <a [routerLink]="['/icons']" mat-list-item routerLinkActive="active">
                     <div class="mat-line">
@@ -108,7 +108,7 @@
                             toll
                         </mat-icon>
                     </div>
-                    <p mat-line> Icons </p>
+                    <p i18n="@@icons.title" mat-line>Icons</p>
                 </a>
                 <a [routerLink]="['/typography']" mat-list-item routerLinkActive="active">
                     <div class="mat-line">
@@ -116,7 +116,7 @@
                             font_download
                         </mat-icon>
                     </div>
-                    <p mat-line> Typography </p>
+                    <p i18n="@@typography.title" mat-line>Typography</p>
                 </a>
 
                 <a href="https://material.angular.io/components/categories" mat-list-item target="_blank">
@@ -125,7 +125,7 @@
                             link
                         </mat-icon>
                     </div>
-                    <p mat-line> Material Components </p>
+                    <p i18n="@@material-components.title" mat-line>Material Components</p>
                 </a>
 
                 <a [routerLink]="['/about']" id="push-bottom" mat-list-item routerLinkActive="active">
@@ -134,7 +134,7 @@
                             info_outline
                         </mat-icon>
                     </div>
-                    <p mat-line> About </p>
+                    <p i18n="@@about.title" mat-line>About</p>
                 </a>
             </mat-nav-list>
 
@@ -148,9 +148,7 @@
                     <mat-progress-bar color="accent" mode="indeterminate">
                     </mat-progress-bar>
                 }
-                <!-- <mat-spinner class="spinner" [diameter]="50" *ngIf="showSpinner"></mat-spinner> -->
             </div>
-
 
             <router-outlet></router-outlet>
 

@@ -4,6 +4,7 @@ import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {Title} from '@angular/platform-browser';
 import {AuthenticationService} from "../../../core/services/auth.service";
 import {NotificationService} from "../../../core/services/notification.service";
+import {environment} from "../../../../environments/environment";
 
 @Component({
     selector: 'app-password-reset-request',
@@ -21,7 +22,7 @@ export class PasswordResetRequestComponent implements OnInit {
     private router = inject(Router);
 
     ngOnInit() {
-        this.titleService.setTitle('angular-material-template - Password Reset Request');
+        this.titleService.setTitle(environment.applicationName + " - " + $localize`:@@password-reset-request.title:Password Reset Request`);
 
         this.form = new UntypedFormGroup({
             email: new UntypedFormControl('', [Validators.required, Validators.email])

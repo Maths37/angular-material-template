@@ -4,6 +4,7 @@ import {Subscription, timer} from 'rxjs';
 import {SpinnerService} from '../../core/services/spinner.service';
 import {AuthenticationService} from "../../core/services/auth.service";
 import {AuthGuard} from "../../core/guards/auth.guard";
+import {environment} from "../../../environments/environment";
 
 @Component({
     selector: 'app-layout',
@@ -15,6 +16,7 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     userName: string = "";
     isAdmin: boolean = false;
     public spinnerService = inject(SpinnerService);
+    protected readonly environment = environment;
     private media = inject(MediaMatcher);
     mobileQuery: MediaQueryList = this.media.matchMedia('(max-width: 1000px)');
     private readonly MOBILE_EVENT: string = "mobile";

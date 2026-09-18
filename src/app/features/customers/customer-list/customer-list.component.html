@@ -3,32 +3,32 @@
 
         <mat-card appearance="outlined">
             <mat-card-content>
-                <h2>Customers</h2>
+                <h2 i18n="@@customers.title">Customers</h2>
 
                 <table [dataSource]="dataSource" mat-table matSort>
 
                     <!-- Position Column -->
                     <ng-container matColumnDef="position">
-                        <th *matHeaderCellDef mat-header-cell> No.</th>
-                        <td *matCellDef="let element" mat-cell> {{ element.position }}</td>
+                        <th *matHeaderCellDef i18n="@@customers.header.no" mat-header-cell>No.</th>
+                        <td *matCellDef="let element" mat-cell>{{ element.position }}</td>
                     </ng-container>
 
                     <!-- Name Column -->
                     <ng-container matColumnDef="name">
-                        <th *matHeaderCellDef mat-header-cell> Name</th>
-                        <td *matCellDef="let element" mat-cell> {{ element.name }}</td>
+                        <th *matHeaderCellDef i18n="@@customers.header.name" mat-header-cell>Name</th>
+                        <td *matCellDef="let element" mat-cell>{{ element.name }}</td>
                     </ng-container>
 
                     <!-- Weight Column -->
                     <ng-container matColumnDef="weight">
-                        <th *matHeaderCellDef mat-header-cell> Weight</th>
-                        <td *matCellDef="let element" mat-cell> {{ element.weight }}</td>
+                        <th *matHeaderCellDef i18n="@@customers.header.weight" mat-header-cell>Weight</th>
+                        <td *matCellDef="let element" mat-cell>{{ element.weight }}</td>
                     </ng-container>
 
                     <!-- Symbol Column -->
                     <ng-container matColumnDef="symbol">
-                        <th *matHeaderCellDef mat-header-cell> Symbol</th>
-                        <td *matCellDef="let element" mat-cell> {{ element.symbol }}</td>
+                        <th *matHeaderCellDef i18n="@@customers.header.symbol" mat-header-cell>Symbol</th>
+                        <td *matCellDef="let element" mat-cell>{{ element.symbol }}</td>
                     </ng-container>
 
                     <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>

@@ -4,6 +4,7 @@ import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {Title} from '@angular/platform-browser';
 import {AuthenticationService} from "../../../core/services/auth.service";
 import {NotificationService} from "../../../core/services/notification.service";
+import {environment} from "../../../../environments/environment";
 
 @Component({
     selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
     private authenticationService = inject(AuthenticationService);
 
     ngOnInit() {
-        this.titleService.setTitle('angular-material-template - Login');
+        this.titleService.setTitle(environment.applicationName + " - " + $localize`:@@login.title:Login`);
         this.authenticationService.logout();
         this.createForm();
     }

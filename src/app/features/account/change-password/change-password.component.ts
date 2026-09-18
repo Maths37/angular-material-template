@@ -53,7 +53,6 @@ export class ChangePasswordComponent implements OnInit {
     }
 
     changePassword() {
-
         if (this.newPassword !== this.newPasswordConfirm) {
             this.notificationService.openSnackBar('New passwords do not match.');
             return;

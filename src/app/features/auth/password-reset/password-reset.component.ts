@@ -4,6 +4,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {AuthenticationService} from "../../../core/services/auth.service";
 import {NotificationService} from "../../../core/services/notification.service";
+import {environment} from "../../../../environments/environment";
 
 @Component({
     selector: 'app-password-reset',
@@ -25,7 +26,7 @@ export class PasswordResetComponent implements OnInit {
     private titleService = inject(Title);
 
     ngOnInit() {
-        this.titleService.setTitle('angular-material-template - Password Reset');
+        this.titleService.setTitle(environment.applicationName + " - " + $localize`:@@password-reset.title:Password Reset`);
         this.activeRoute.queryParamMap.subscribe((params: ParamMap) => {
             this.token = params.get('token') + '';
             this.email = params.get('email') + '';

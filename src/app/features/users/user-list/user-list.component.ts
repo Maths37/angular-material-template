@@ -2,6 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
 import {NGXLogger} from 'ngx-logger';
+import {environment} from "../../../../environments/environment";
 
 @Component({
     selector: 'app-user-list',
@@ -14,7 +15,7 @@ export class UserListComponent implements OnInit {
     private titleService = inject(Title);
 
     ngOnInit() {
-        this.titleService.setTitle('angular-material-template - Users');
+        this.titleService.setTitle(environment.applicationName + " - " + $localize`:@@users.title:Users`);
         this.logger.log('Users loaded');
     }
 }

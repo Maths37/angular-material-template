@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start-en": "ng serve",
+    "start-fr": "ng serve --configuration=development-fr",
     "build": "ng build",
-    "i18n": "ng extract-i18n",
+    "i18n": "ng extract-i18n --output-path src/locale --format=json",
     "circular-check": "madge --circular --extensions ts ./src ",
     "lint": "ng lint",
     "test": "jest",

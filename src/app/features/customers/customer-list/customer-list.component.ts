@@ -4,6 +4,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {NGXLogger} from 'ngx-logger';
 import {Title} from '@angular/platform-browser';
 import {NotificationService} from "../../../core/services/notification.service";
+import {environment} from "../../../../environments/environment";
 
 export interface PeriodicElement {
     name: string;
@@ -42,7 +43,7 @@ export class CustomerListComponent implements OnInit {
     private titleService = inject(Title);
 
     ngOnInit() {
-        this.titleService.setTitle('angular-material-template - Customers');
+        this.titleService.setTitle(environment.applicationName + " - " + $localize`:@@customers.title:Customers`);
         this.logger.log('Customers loaded');
         this.notificationService.openSnackBar('Customers loaded');
         this.dataSource.sort = this.sort;

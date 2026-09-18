@@ -6,7 +6,7 @@ import {TableColumn} from "../model/table-column";
 import {Title} from "@angular/platform-browser";
 import {HttpErrorResponse} from "@angular/common/http";
 import {PagedService} from "../service/paged.service";
-import {MatServerSideTableDataSource} from "../model/service-side";
+import {MatServerSideTableDataSource} from "../model/server-side";
 import {DataType} from "../../model/data-type";
 
 @Component({
