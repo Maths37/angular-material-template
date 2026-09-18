@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 import moment from 'moment';
 
 @Pipe({
@@ -7,11 +7,11 @@ import moment from 'moment';
 })
 export class LocalDatePipe implements PipeTransform {
 
-  transform(value: Date | null | undefined, args: string | null): string {
-    if (!value || !args) {
-      return '';
+    transform(value: Date | null | undefined, args: string | null): string {
+        if (!value || !args) {
+            return '';
+        }
+        return moment.utc(value).local().format(args);
     }
-    return moment.utc(value).local().format(args);
-  }
 
 }

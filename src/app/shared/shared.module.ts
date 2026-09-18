@@ -12,6 +12,8 @@ import {LocalDatePipe} from './pipes/local-date.pipe';
 import {YesNoPipe} from './pipes/yes-no.pipe';
 import {LayoutComponent} from './layout/layout.component';
 import {MatLine} from "@angular/material/core";
+import {CommonFormatterPipe} from "./pipes/common-formatter.pipe";
+import {PagedComponent} from "./paged/page/paged.component";
 
 @NgModule({
     imports: [
@@ -27,7 +29,9 @@ import {MatLine} from "@angular/material/core";
         LimitToPipe,
         LocalDatePipe,
         YesNoPipe,
-        LayoutComponent
+        CommonFormatterPipe,
+        LayoutComponent,
+        PagedComponent
     ],
     exports: [
         FormsModule,
@@ -37,8 +41,11 @@ import {MatLine} from "@angular/material/core";
         ConfirmDialogComponent,
         ContentPlaceholderAnimationComponent,
         LocalDatePipe,
-        YesNoPipe
+        YesNoPipe,
+        CommonFormatterPipe,
+        PagedComponent
     ]
 })
 export class SharedModule {
+    
 }

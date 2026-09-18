@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import {Component, inject, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 @Component({
     selector: 'app-account-page',
@@ -8,11 +8,9 @@ import { Title } from '@angular/platform-browser';
     standalone: false
 })
 export class AccountPageComponent implements OnInit {
+    private titleService = inject(Title);
 
-  constructor(private titleService: Title) { }
-
-  ngOnInit() {
-    this.titleService.setTitle('angular-material-template - Account');
-  }
-
+    ngOnInit() {
+        this.titleService.setTitle('angular-material-template - Account');
+    }
 }

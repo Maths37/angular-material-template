@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthenticationService } from '../services/auth.service';
+import {inject, Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthenticationService} from '../services/auth.service';
 
 @Injectable()
-export class AdminGuard  {
-
-    constructor(private router: Router,
-        private authService: AuthenticationService) { }
+export class AdminGuard {
+    private router = inject(Router);
+    private authService = inject(AuthenticationService);
 
     canActivate() {
         const user = this.authService.getCurrentUser();

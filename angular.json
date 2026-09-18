@@ -13,6 +13,14 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "fr": {
+            "translation": "src/locale/messages.fr.json"
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -59,10 +67,23 @@
               ],
               "outputHashing": "all"
             },
-            "development": {
+            "development-fr": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "localize": [
+                "fr"
+              ],
+              "baseHref": "/fr/"
+            },
+            "development-en": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "localize": [
+                "en"
+              ],
+              "baseHref": "/en/"
             }
           },
           "defaultConfiguration": "production"
@@ -73,11 +94,14 @@
             "production": {
               "buildTarget": "angular-material-template:build:production"
             },
-            "development": {
-              "buildTarget": "angular-material-template:build:development"
+            "development-fr": {
+              "buildTarget": "blois-frontend-template:build:development-fr"
+            },
+            "development-en": {
+              "buildTarget": "blois-frontend-template:build:development-en"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development-en"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

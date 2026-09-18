@@ -1,160 +1,160 @@
 <div [class.example-is-mobile]="mobileQuery.matches" class="navbar-container">
 
-  <!-- Top navbar -->
-  <mat-toolbar class="navbar" color="primary">
-    <button (click)="snav.toggle()" mat-icon-button>
-      <mat-icon>menu</mat-icon>
-    </button>
+    <!-- Top navbar -->
+    <mat-toolbar class="navbar" color="primary">
+        <button (click)="snav.toggle()" mat-icon-button>
+            <mat-icon>menu</mat-icon>
+        </button>
 
-    <a [routerLink]="['/']" class="navbar-brand" matTooltip="Home">
-      <h1>
-        angular-material-template
-      </h1>
-    </a>
-
-    <span class="navbar-spacer"></span>
-
-    <button [matMenuTriggerFor]="notificationMenu" mat-icon-button>
-      <mat-icon matBadge="2" matBadgeColor="accent">notifications</mat-icon>
-    </button>
-    <mat-menu #notificationMenu="matMenu" [overlapTrigger]="false" xPosition="before" yPosition="above">
-      <a mat-menu-item>
-        <span>You have new tasks</span>
-      </a>
-      <a mat-menu-item>
-        <span>You have a new message</span>
-      </a>
-    </mat-menu>
-
-    <button [matMenuTriggerFor]="userMenu" mat-button>
-      <div class="mat-line">
-        <mat-icon>person</mat-icon>
-      </div>
-      <p mat-line> {{ userName }} </p>
-    </button>
-    <mat-menu #userMenu="matMenu" [overlapTrigger]="false" xPosition="before" yPosition="above">
-
-      <a [routerLink]="['/account/profile']" mat-menu-item>
-        <div class="mat-line">
-          <mat-icon>person</mat-icon>
-        </div>
-        <p mat-line> Account </p>
-      </a>
-
-      <a [routerLink]="['/auth/login']" mat-menu-item>
-        <div class="mat-line">
-          <mat-icon>exit_to_app</mat-icon>
-        </div>
-        <p mat-line> Log out </p>
-      </a>
-    </mat-menu>
-  </mat-toolbar>
-
-  <mat-sidenav-container class="navbar-sidenav-container">
-    <!-- Side nav -->
-    <mat-sidenav #snav [fixedInViewport]="mobileQuery.matches" [mode]="mobileQuery.matches ? 'over' : 'side'"
-      [opened]="!mobileQuery.matches" class="sidenav" fixedTopGap="56">
-
-      <mat-nav-list>
-        <h3 mat-subheader>Home</h3>
-
-        <a [routerLink]="['/dashboard']" mat-list-item routerLinkActive="active">
-          <div class="mat-line">
-            <mat-icon>
-              dashboard
-            </mat-icon>
-          </div>
-          <p mat-line> Dashboard </p>
+        <a [routerLink]="['/']" class="navbar-brand" matTooltip="Home">
+            <h1>
+                angular-material-template
+            </h1>
         </a>
 
-        <a [routerLink]="['/customers']" mat-list-item routerLinkActive="active">
-          <div class="mat-line">
-            <mat-icon>
-              business
-            </mat-icon>
-          </div>
-          <p mat-line> Customers </p>
-        </a>
-        <a [routerLink]="['/users']" mat-list-item routerLinkActive="active">
-          <div class="mat-line">
-            <mat-icon>
-              people
-            </mat-icon>
-          </div>
-          <p mat-line> Users </p>
-        </a>
+        <span class="navbar-spacer"></span>
 
-        <a [routerLink]="['/account/profile']" mat-list-item>
-          <div class="mat-line">
-            <mat-icon>person</mat-icon>
-          </div>
-          <p mat-line> Account </p>
-        </a>
+        <button [matMenuTriggerFor]="notificationMenu" mat-icon-button>
+            <mat-icon matBadge="2" matBadgeColor="accent">notifications</mat-icon>
+        </button>
+        <mat-menu #notificationMenu="matMenu" [overlapTrigger]="false" xPosition="before" yPosition="above">
+            <a mat-menu-item>
+                <span>You have new tasks</span>
+            </a>
+            <a mat-menu-item>
+                <span>You have a new message</span>
+            </a>
+        </mat-menu>
 
-        <a [routerLink]="['/auth/login']" mat-list-item>
-          <div class="mat-line">
-            <mat-icon>exit_to_app</mat-icon>
-          </div>
-          <p mat-line> Log out </p>
-        </a>
+        <button [matMenuTriggerFor]="userMenu" mat-button>
+            <div class="mat-line">
+                <mat-icon>person</mat-icon>
+            </div>
+            <p mat-line> {{ userName }} </p>
+        </button>
+        <mat-menu #userMenu="matMenu" [overlapTrigger]="false" xPosition="before" yPosition="above">
 
-        <mat-divider></mat-divider>
+            <a [routerLink]="['/account/profile']" mat-menu-item>
+                <div class="mat-line">
+                    <mat-icon>person</mat-icon>
+                </div>
+                <p mat-line> Account </p>
+            </a>
 
-        <h3 mat-subheader>Resources</h3>
+            <a [routerLink]="['/auth/login']" mat-menu-item>
+                <div class="mat-line">
+                    <mat-icon>exit_to_app</mat-icon>
+                </div>
+                <p mat-line> Log out </p>
+            </a>
+        </mat-menu>
+    </mat-toolbar>
 
-        <a [routerLink]="['/icons']" mat-list-item routerLinkActive="active">
-          <div class="mat-line">
-            <mat-icon>
-              toll
-            </mat-icon>
-          </div>
-          <p mat-line> Icons </p>
-        </a>
-        <a [routerLink]="['/typography']" mat-list-item routerLinkActive="active">
-          <div class="mat-line">
-            <mat-icon>
-              font_download
-            </mat-icon>
-          </div>
-          <p mat-line> Typography </p>
-        </a>
+    <mat-sidenav-container class="navbar-sidenav-container">
+        <!-- Side nav -->
+        <mat-sidenav #snav [fixedInViewport]="mobileQuery.matches" [mode]="mobileQuery.matches ? 'over' : 'side'"
+                     [opened]="!mobileQuery.matches" class="sidenav" fixedTopGap="56">
 
-        <a href="https://material.angular.io/components/categories" mat-list-item target="_blank">
-          <div class="mat-line">
-            <mat-icon>
-              link
-            </mat-icon>
-          </div>
-          <p mat-line> Material Components </p>
-        </a>
+            <mat-nav-list>
+                <h3 mat-subheader>Home</h3>
 
-        <a [routerLink]="['/about']" id="push-bottom" mat-list-item routerLinkActive="active">
-          <div class="mat-line">
-            <mat-icon>
-              info_outline
-            </mat-icon>
-          </div>
-          <p mat-line> About </p>
-        </a>
-      </mat-nav-list>
+                <a [routerLink]="['/dashboard']" mat-list-item routerLinkActive="active">
+                    <div class="mat-line">
+                        <mat-icon>
+                            dashboard
+                        </mat-icon>
+                    </div>
+                    <p mat-line> Dashboard </p>
+                </a>
 
-    </mat-sidenav>
+                <a [routerLink]="['/customers']" mat-list-item routerLinkActive="active">
+                    <div class="mat-line">
+                        <mat-icon>
+                            business
+                        </mat-icon>
+                    </div>
+                    <p mat-line> Customers </p>
+                </a>
+                <a [routerLink]="['/users']" mat-list-item routerLinkActive="active">
+                    <div class="mat-line">
+                        <mat-icon>
+                            people
+                        </mat-icon>
+                    </div>
+                    <p mat-line> Users </p>
+                </a>
 
-    <!-- Main content -->
-    <mat-sidenav-content class="sidenav-content">
+                <a [routerLink]="['/account/profile']" mat-list-item>
+                    <div class="mat-line">
+                        <mat-icon>person</mat-icon>
+                    </div>
+                    <p mat-line> Account </p>
+                </a>
 
-      <div class="progress-bar-container">
-        @if (spinnerService.visibility | async) {
-          <mat-progress-bar color="accent" mode="indeterminate">
-          </mat-progress-bar>
-        }
-        <!-- <mat-spinner class="spinner" [diameter]="50" *ngIf="showSpinner"></mat-spinner> -->
-      </div>
+                <a [routerLink]="['/auth/login']" mat-list-item>
+                    <div class="mat-line">
+                        <mat-icon>exit_to_app</mat-icon>
+                    </div>
+                    <p mat-line> Log out </p>
+                </a>
+
+                <mat-divider></mat-divider>
+
+                <h3 mat-subheader>Resources</h3>
+
+                <a [routerLink]="['/icons']" mat-list-item routerLinkActive="active">
+                    <div class="mat-line">
+                        <mat-icon>
+                            toll
+                        </mat-icon>
+                    </div>
+                    <p mat-line> Icons </p>
+                </a>
+                <a [routerLink]="['/typography']" mat-list-item routerLinkActive="active">
+                    <div class="mat-line">
+                        <mat-icon>
+                            font_download
+                        </mat-icon>
+                    </div>
+                    <p mat-line> Typography </p>
+                </a>
+
+                <a href="https://material.angular.io/components/categories" mat-list-item target="_blank">
+                    <div class="mat-line">
+                        <mat-icon>
+                            link
+                        </mat-icon>
+                    </div>
+                    <p mat-line> Material Components </p>
+                </a>
+
+                <a [routerLink]="['/about']" id="push-bottom" mat-list-item routerLinkActive="active">
+                    <div class="mat-line">
+                        <mat-icon>
+                            info_outline
+                        </mat-icon>
+                    </div>
+                    <p mat-line> About </p>
+                </a>
+            </mat-nav-list>
+
+        </mat-sidenav>
+
+        <!-- Main content -->
+        <mat-sidenav-content class="sidenav-content">
+
+            <div class="progress-bar-container">
+                @if (spinnerService.visibility | async) {
+                    <mat-progress-bar color="accent" mode="indeterminate">
+                    </mat-progress-bar>
+                }
+                <!-- <mat-spinner class="spinner" [diameter]="50" *ngIf="showSpinner"></mat-spinner> -->
+            </div>
 
 
-      <router-outlet></router-outlet>
+            <router-outlet></router-outlet>
 
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 
 </div>

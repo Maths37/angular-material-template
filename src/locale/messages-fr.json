@@ -1,0 +1,11 @@
+{
+  "locale": "fr",
+  "translations": {
+    "paged.label.filter": "Filtre",
+    "paged.label.items-per-page": "Items par page",
+    "paged.label.next-page": "Page suivante",
+    "paged.label.previous-page": "Page précédente",
+    "paged.label.empty-range": "0 sur {$PH}",
+    "paged.label.range": "{$PH} - {$PH_1} sur {$PH_2}"
+  }
+}
