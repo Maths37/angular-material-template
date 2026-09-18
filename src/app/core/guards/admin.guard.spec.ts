@@ -13,8 +13,8 @@ describe('AdminGuard', () => {
     const notificationService = jest.mocked(NotificationService.prototype);
 
     beforeEach(() => {
-        router.navigate = jest.fn()
-            .mockResolvedValueOnce(Promise.resolve(true));
+        router.navigateByUrl = jest.fn()
+            .mockResolvedValueOnce(() => Promise.resolve(true));
         notificationService.openSnackBar = jest.fn();
         guard = Injector.create({
             providers: [
@@ -32,7 +32,8 @@ describe('AdminGuard', () => {
 
     it('returns true if user is admin', () => {
         const user = {'isAdmin': true};
-        authService.getCurrentUser = jest.fn().mockImplementation(() => user);
+        authService.getCurrentUser = jest.fn()
+            .mockImplementation(() => user);
 
         const result = guard.canActivate();
 
@@ -40,7 +41,8 @@ describe('AdminGuard', () => {
     });
 
     it('returns false if user does not exist', () => {
-        authService.getCurrentUser = jest.fn().mockImplementation(() => null);
+        authService.getCurrentUser = jest.fn()
+            .mockImplementation(() => null);
 
         const result = guard.canActivate();
 
@@ -49,7 +51,8 @@ describe('AdminGuard', () => {
 
     it('returns false if user is not admin', () => {
         const user = {'isAdmin': false};
-        authService.getCurrentUser = jest.fn().mockImplementation(() => user);
+        authService.getCurrentUser = jest.fn()
+            .mockImplementation(() => user);
 
         const result = guard.canActivate();
 
@@ -58,18 +61,20 @@ describe('AdminGuard', () => {
 
     it('redirects to root if user is not an admin', () => {
         const user = {'isAdmin': false};
-        authService.getCurrentUser = jest.fn().mockImplementation(() => user);
+        authService.getCurrentUser = jest.fn()
+            .mockImplementation(() => user);
 
         guard.canActivate();
 
-        expect(router.navigate).toHaveBeenCalledWith(['/']);
+        expect(router.navigateByUrl).toHaveBeenCalledWith('/');
     });
 
     it('redirects to root if user does not exist', () => {
-        authService.getCurrentUser = jest.fn().mockImplementation(() => null);
+        authService.getCurrentUser = jest.fn()
+            .mockImplementation(() => null);
 
         guard.canActivate();
 
-        expect(router.navigate).toHaveBeenCalledWith(['/']);
+        expect(router.navigateByUrl).toHaveBeenCalledWith('/');
     });
 });

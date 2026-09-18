@@ -4,7 +4,6 @@ import {Router} from "@angular/router";
 import {AuthenticationService} from "../services/auth.service";
 import {NotificationService} from "../services/notification.service";
 import moment from "moment";
-import SpyInstance = jest.SpyInstance;
 
 
 describe('AuthGuard', () => {
@@ -12,12 +11,10 @@ describe('AuthGuard', () => {
     const router = jest.mocked(Router.prototype);
     const authService = jest.mocked(AuthenticationService.prototype);
     const notificationService = jest.mocked(NotificationService.prototype);
-    let routerSpy: SpyInstance;
 
     beforeEach(() => {
-        router.navigate = jest.fn()
+        router.navigateByUrl = jest.fn()
             .mockResolvedValueOnce(Promise.resolve(true));
-        routerSpy = jest.spyOn(router, 'navigate');
         notificationService.openSnackBar = jest.fn();
         guard = Injector.create({
             providers: [
@@ -34,7 +31,8 @@ describe('AuthGuard', () => {
     });
 
     it('returns false if user is null', () => {
-        authService.getCurrentUser = jest.fn().mockImplementation(() => null);
+        authService.getCurrentUser = jest.fn()
+            .mockImplementation(() => null);
 
         const result = guard.canActivate();
 
@@ -42,33 +40,38 @@ describe('AuthGuard', () => {
     });
 
     it('redirects to login if user is null', () => {
-        authService.getCurrentUser = jest.fn().mockImplementation(() => null);
+        authService.getCurrentUser = jest.fn()
+            .mockImplementation(() => null);
 
         guard.canActivate();
 
-        expect(router.navigate).toHaveBeenCalledWith(['auth/login']);
+        expect(router.navigateByUrl).toHaveBeenCalledWith('auth/login');
     });
 
     it('does not display expired notification if user is null', () => {
-        authService.getCurrentUser = jest.fn().mockImplementation(() => null);
+        authService.getCurrentUser = jest.fn()
+            .mockImplementation(() => null);
 
         guard.canActivate();
 
-        expect(notificationService.openSnackBar).toHaveBeenCalledTimes(0);
+        expect(notificationService.openSnackBar)
+            .toHaveBeenCalledTimes(0);
     });
 
     it('redirects to login if user session has expired', () => {
         const user = {expiration: moment().add(-1, 'seconds')};
-        authService.getCurrentUser = jest.fn().mockImplementation(() => user);
+        authService.getCurrentUser = jest.fn()
+            .mockImplementation(() => user);
 
         guard.canActivate();
 
-        expect(routerSpy).toHaveBeenCalledTimes(1);
+        expect(router.navigateByUrl).toHaveBeenCalledTimes(1);
     });
 
     it('displays notification if user session has expired', () => {
         const user = {expiration: moment().add(-1, 'seconds')};
-        authService.getCurrentUser = jest.fn().mockImplementation(() => user);
+        authService.getCurrentUser = jest.fn()
+            .mockImplementation(() => user);
 
         guard.canActivate();
 
@@ -78,7 +81,8 @@ describe('AuthGuard', () => {
 
     it('returns true if user session is valid', () => {
         const user = {expiration: moment().add(1, 'minutes')};
-        authService.getCurrentUser = jest.fn().mockImplementation(() => user);
+        authService.getCurrentUser = jest.fn()
+            .mockImplementation(() => user);
 
         const result = guard.canActivate();
 

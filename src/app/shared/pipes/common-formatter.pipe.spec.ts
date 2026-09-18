@@ -1,9 +1,9 @@
 import {CommonFormatterPipe} from "./common-formatter.pipe";
-import {DataType} from "../paged/model/data-type";
 import {registerLocaleData} from "@angular/common";
 import localeFr from '@angular/common/locales/fr';
 import localeFrExtra from '@angular/common/locales/extra/fr';
-import {Locale} from "../../app.module";
+import {Locale} from "../model/locale";
+import {DataType} from "../model/data-type";
 
 describe('CommonFormatterPipe', () => {
     const date = new Date('2018-05-04T08:17:57.8979116Z');
