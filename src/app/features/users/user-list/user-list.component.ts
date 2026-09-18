@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
 import {NGXLogger} from 'ngx-logger';
@@ -7,7 +7,6 @@ import {NGXLogger} from 'ngx-logger';
     selector: 'app-user-list',
     templateUrl: './user-list.component.html',
     styleUrls: ['./user-list.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class UserListComponent implements OnInit {

@@ -14,4 +14,5 @@ import {SharedModule} from '../../shared/shared.module';
     ]
 })
 export class AboutModule {
+    
 }

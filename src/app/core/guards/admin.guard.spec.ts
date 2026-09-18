@@ -1,27 +1,38 @@
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 
-import { AdminGuard } from './admin.guard';
-import { AuthenticationService } from '../services/auth.service';
+import {AdminGuard} from './admin.guard';
+import {AuthenticationService} from '../services/auth.service';
+import {NotificationService} from "../services/notification.service";
+import {Injector} from "@angular/core";
+
 
 describe('AdminGuard', () => {
-
-    let router: jasmine.SpyObj<Router>;
-    let authService: jasmine.SpyObj<AuthenticationService>;
+    let guard: AdminGuard;
+    const router = jest.mocked(Router.prototype);
+    const authService = jest.mocked(AuthenticationService.prototype);
+    const notificationService = jest.mocked(NotificationService.prototype);
 
     beforeEach(() => {
-        router = jasmine.createSpyObj<Router>('Router', ['navigate']);
-        authService = jasmine.createSpyObj<AuthenticationService>('AuthenticationService', ['getCurrentUser']);
+        router.navigate = jest.fn()
+            .mockResolvedValueOnce(Promise.resolve(true));
+        notificationService.openSnackBar = jest.fn();
+        guard = Injector.create({
+            providers: [
+                {provide: AdminGuard},
+                {provide: Router, useValue: router},
+                {provide: AuthenticationService, useValue: authService},
+                {provide: NotificationService, useValue: notificationService},
+            ],
+        }).get(AdminGuard);
     });
 
     it('create an instance', () => {
-        const guard = new AdminGuard(router, authService);
         expect(guard).toBeTruthy();
     });
 
     it('returns true if user is admin', () => {
-        const user = { 'isAdmin': true };
-        authService.getCurrentUser.and.returnValue(user);
-        const guard = new AdminGuard(router, authService);
+        const user = {'isAdmin': true};
+        authService.getCurrentUser = jest.fn().mockImplementation(() => user);
 
         const result = guard.canActivate();
 
@@ -29,8 +40,7 @@ describe('AdminGuard', () => {
     });
 
     it('returns false if user does not exist', () => {
-        authService.getCurrentUser.and.returnValue(null);
-        const guard = new AdminGuard(router, authService);
+        authService.getCurrentUser = jest.fn().mockImplementation(() => null);
 
         const result = guard.canActivate();
 
@@ -38,9 +48,8 @@ describe('AdminGuard', () => {
     });
 
     it('returns false if user is not admin', () => {
-        const user = { 'isAdmin': false };
-        authService.getCurrentUser.and.returnValue(user);
-        const guard = new AdminGuard(router, authService);
+        const user = {'isAdmin': false};
+        authService.getCurrentUser = jest.fn().mockImplementation(() => user);
 
         const result = guard.canActivate();
 
@@ -48,9 +57,8 @@ describe('AdminGuard', () => {
     });
 
     it('redirects to root if user is not an admin', () => {
-        const user = { 'isAdmin': false };
-        authService.getCurrentUser.and.returnValue(user);
-        const guard = new AdminGuard(router, authService);
+        const user = {'isAdmin': false};
+        authService.getCurrentUser = jest.fn().mockImplementation(() => user);
 
         guard.canActivate();
 
@@ -58,12 +66,10 @@ describe('AdminGuard', () => {
     });
 
     it('redirects to root if user does not exist', () => {
-        authService.getCurrentUser.and.returnValue(null);
-        const guard = new AdminGuard(router, authService);
+        authService.getCurrentUser = jest.fn().mockImplementation(() => null);
 
         guard.canActivate();
 
         expect(router.navigate).toHaveBeenCalledWith(['/']);
     });
-
 });

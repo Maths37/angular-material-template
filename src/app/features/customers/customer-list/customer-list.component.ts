@@ -1,9 +1,9 @@
-import {Component, inject, OnInit, ViewChild, ChangeDetectionStrategy} from '@angular/core';
+import {Component, inject, OnInit, ViewChild} from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {NGXLogger} from 'ngx-logger';
 import {Title} from '@angular/platform-browser';
-import {NotificationService} from 'src/app/core/services/notification.service';
+import {NotificationService} from "../../../core/services/notification.service";
 
 export interface PeriodicElement {
     name: string;
@@ -29,7 +29,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
     selector: 'app-customer-list',
     templateUrl: './customer-list.component.html',
     styleUrls: ['./customer-list.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CustomerListComponent implements OnInit {

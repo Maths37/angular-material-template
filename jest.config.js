@@ -1,13 +1,13 @@
-/** @jest-config-loader esbuild-register */
+// jest.config.ts
+const {createCjsPreset} = require('jest-preset-angular/presets');
 
-import type { Config } from 'jest';
-import { createCjsPreset } from 'jest-preset-angular/presets/index.js';
-import { pathsToModuleNameMapper } from 'ts-jest';
-
-import { compilerOptions } from './tsconfig.json' with { type: 'json' };
-
-export default {
+/** @type {import('jest').Config} */
+module.exports = {
     ...createCjsPreset(),
-    moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' }),
-    setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
-} satisfies Config;
+    testEnvironment: 'jsdom',
+    testPathIgnorePatterns: [
+        '<rootDir>/node_modules/',
+        '<rootDir>/dist/',
+        '<rootDir>/src/test.ts', // fichier Karma par défaut
+    ],
+};

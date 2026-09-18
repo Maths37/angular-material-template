@@ -1,4 +1,4 @@
-import {DataType} from "./data-type";
+import {DataType} from "../../model/data-type";
 
 export class TableColumn {
     code: string;

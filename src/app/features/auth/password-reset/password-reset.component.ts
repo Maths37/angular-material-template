@@ -1,15 +1,14 @@
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {Component, inject, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {AuthenticationService} from 'src/app/core/services/auth.service';
-import {NotificationService} from 'src/app/core/services/notification.service';
+import {AuthenticationService} from "../../../core/services/auth.service";
+import {NotificationService} from "../../../core/services/notification.service";
 
 @Component({
     selector: 'app-password-reset',
     templateUrl: './password-reset.component.html',
     styleUrls: ['./password-reset.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PasswordResetComponent implements OnInit {
@@ -53,17 +52,18 @@ export class PasswordResetComponent implements OnInit {
 
         this.loading = true;
 
-        this.authService.passwordReset(this.email, this.token, password, passwordConfirm)
-            .subscribe(
-                () => {
+        this.authService
+            .passwordReset(this.email, this.token, password, passwordConfirm)
+            .subscribe({
+                next: (_: any) => {
                     this.notificationService.openSnackBar('Your password has been changed.');
                     this.router.navigate(['/auth/login']);
                 },
-                (error: any) => {
+                error: (error: any) => {
                     this.notificationService.openSnackBar(error.error);
                     this.loading = false;
                 }
-            );
+            });
     }
 
     cancel() {

@@ -2,11 +2,13 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "module": "CommonJS",
     "outDir": "./out-tsc/spec",
     "types": [
       "jest",
       "@angular/localize"
-    ]
+    ],
+    "isolatedModules": true
   },
   "files": [
     "src/test.ts",

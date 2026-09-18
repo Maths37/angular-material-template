@@ -1,23 +1,21 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {DatePipe, DecimalPipe, formatCurrency, PercentPipe} from "@angular/common";
-import {DataType} from "../paged/model/data-type";
+import {Locale} from "../model/locale";
+import {DataType} from "../model/data-type";
 
 @Pipe({
     name: 'commonFormatter',
     standalone: false
 })
 export class CommonFormatterPipe implements PipeTransform {
-    private readonly locale: string;
     private datePipe;
     private percentPipe;
     private decimalPipe;
 
-    constructor() {
-        const currentLocale: string | undefined = $localize.locale;
-        this.locale = currentLocale ? currentLocale : 'en-US';
-        this.datePipe = new DatePipe(this.locale);
-        this.percentPipe = new PercentPipe(this.locale);
-        this.decimalPipe = new DecimalPipe(this.locale);
+    constructor(public locale: Locale) {
+        this.datePipe = new DatePipe(locale.value);
+        this.percentPipe = new PercentPipe(locale.value);
+        this.decimalPipe = new DecimalPipe(locale.value);
     }
 
     transform(value: any | null | undefined, type: DataType = DataType.TEXT, args: string | null = null): string {
@@ -31,7 +29,7 @@ export class CommonFormatterPipe implements PipeTransform {
                 }
                 break;
             case DataType.CURRENCY_EUR:
-                formattedValue = formatCurrency(value, this.locale, 'EUR');
+                formattedValue = formatCurrency(value, this.locale.value, 'EUR');
                 break;
             case DataType.DATE:
                 formattedValue = this.datePipe.transform(value, 'longDate');

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, inject, Input, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {MatSort, Sort} from "@angular/material/sort";
 import {ActivatedRoute} from "@angular/router";
@@ -6,15 +6,14 @@ import {TableColumn} from "../model/table-column";
 import {Title} from "@angular/platform-browser";
 import {HttpErrorResponse} from "@angular/common/http";
 import {PagedService} from "../service/paged.service";
-import {DataType} from "../model/data-type";
 import {MatServerSideTableDataSource} from "../model/service-side";
+import {DataType} from "../../model/data-type";
 
 @Component({
     selector: 'paged-list',
     standalone: false,
     templateUrl: './paged.component.html',
     styleUrls: ['./paged.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PagedComponent<T> implements OnInit {
     @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -32,7 +31,7 @@ export class PagedComponent<T> implements OnInit {
     private route = inject(ActivatedRoute);
 
     ngOnInit() {
-        this.route.data.subscribe(data => {
+        this.route.data.subscribe(_ => {
             this.titleService.setTitle("Paged List");
             this.contentTitle = "Paged List";
             this.uri = "/api/list";
