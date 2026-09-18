@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LayoutComponent} from 'src/app/shared/layout/layout.component';
 
 import {CustomerListComponent} from './customer-list/customer-list.component';
+import {LayoutComponent} from "../../shared/layout/layout.component";
 
 const routes: Routes = [
     {

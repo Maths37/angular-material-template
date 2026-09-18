@@ -5,7 +5,6 @@
     "paged.label.items-per-page": "Items per page",
     "paged.label.next-page": "Next page",
     "paged.label.previous-page": "Previous page",
-    "paged.label.empty-range": "0 of {$PH}",
     "paged.label.range": "{$PH} - {$PH_1} of {$PH_2}"
   }
 }

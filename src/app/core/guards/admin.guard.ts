@@ -12,9 +12,8 @@ export class AdminGuard {
 
         if (user && user.isAdmin) {
             return true;
-
         } else {
-            this.router.navigate(['/']);
+            this.router.navigateByUrl('/');
             return false;
         }
     }

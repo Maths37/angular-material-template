@@ -13,6 +13,7 @@ import localeFr from '@angular/common/locales/fr';
 import localeFrExtra from '@angular/common/locales/extra/fr';
 import {MatPaginatorLocalized} from "./shared/paged/service/paginator-intl";
 import {MatPaginatorIntl} from "@angular/material/paginator";
+import {Locale} from "./shared/model/locale";
 
 registerLocaleData(localeFr, 'fr', localeFrExtra);
 
@@ -37,6 +38,10 @@ registerLocaleData(localeFr, 'fr', localeFrExtra);
         {
             provide: MatPaginatorIntl,
             useClass: MatPaginatorLocalized
+        },
+        {
+            provide: Locale,
+            useValue: new Locale($localize.locale)
         }
     ]
 })

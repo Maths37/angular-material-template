@@ -2,9 +2,8 @@ import {Router} from '@angular/router';
 import {Component, inject, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {Title} from '@angular/platform-browser';
-
-import {NotificationService} from 'src/app/core/services/notification.service';
-import {AuthenticationService} from 'src/app/core/services/auth.service';
+import {AuthenticationService} from "../../../core/services/auth.service";
+import {NotificationService} from "../../../core/services/notification.service";
 
 @Component({
     selector: 'app-password-reset-request',
@@ -36,17 +35,18 @@ export class PasswordResetRequestComponent implements OnInit {
 
     resetPassword() {
         this.loading = true;
-        this.authService.passwordResetRequest(this.email)
-            .subscribe(
-                results => {
+        this.authService
+            .passwordResetRequest(this.email)
+            .subscribe({
+                next: (_) => {
                     this.router.navigate(['/auth/login']);
                     this.notificationService.openSnackBar('Password verification mail has been sent to your email address.');
                 },
-                error => {
+                error: (error) => {
                     this.loading = false;
                     this.notificationService.openSnackBar(error.error);
                 }
-            );
+            });
     }
 
     cancel() {

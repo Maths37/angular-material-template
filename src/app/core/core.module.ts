@@ -1,6 +1,6 @@
 import {ErrorHandler, NgModule, Optional, SkipSelf} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi, withXhr} from '@angular/common/http';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {NGXLogger} from 'ngx-logger';
 
@@ -33,7 +33,7 @@ import {AdminGuard} from './guards/admin.guard';
         },
         {provide: NGXLogger, useClass: NGXLogger},
         {provide: 'LOCALSTORAGE', useValue: window.localStorage},
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withXhr(), withInterceptorsFromDi())
     ]
 })
 export class CoreModule {

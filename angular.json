@@ -23,7 +23,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular/build:application",
           "options": {
             "outputPath": "dist/angular-material-template",
             "index": "src/index.html",
@@ -50,8 +50,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "2mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -89,43 +89,32 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
               "buildTarget": "angular-material-template:build:production"
             },
             "development-fr": {
-              "buildTarget": "blois-frontend-template:build:development-fr"
+              "buildTarget": "angular-material-template:build:development-fr"
             },
             "development-en": {
-              "buildTarget": "blois-frontend-template:build:development-en"
+              "buildTarget": "angular-material-template:build:development-en"
             }
           },
           "defaultConfiguration": "development-en"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular/build:extract-i18n",
           "options": {
-            "buildTarget": "angular-material-template:build"
+            "buildTarget": "angular-material-template:build",
+            "outputPath": "src/locale",
+            "format": "json"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-builders/jest:run",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": [
-              "src/polyfills.ts",
-              "@angular/localize/init"
-            ],
             "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
             "scripts": []
           }
         },

@@ -1,9 +1,9 @@
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {Component, inject, OnInit} from '@angular/core';
 import {NGXLogger} from 'ngx-logger';
-import {AuthenticationService} from 'src/app/core/services/auth.service';
-import {NotificationService} from 'src/app/core/services/notification.service';
-import {SpinnerService} from 'src/app/core/services/spinner.service';
+import {AuthenticationService} from "../../../core/services/auth.service";
+import {SpinnerService} from "../../../core/services/spinner.service";
+import {NotificationService} from "../../../core/services/notification.service";
 
 
 @Component({
@@ -62,15 +62,16 @@ export class ChangePasswordComponent implements OnInit {
         const email = this.authService.getCurrentUser().email;
 
         this.authService.changePassword(email, this.currentPassword, this.newPassword)
-            .subscribe(
-                data => {
+            .subscribe({
+                next: (_) => {
                     this.logger.info(`User ${email} changed password.`);
                     this.form.reset();
                     this.notificationService.openSnackBar('Your password has been changed.');
                 },
-                error => {
+                error: (error) => {
                     this.notificationService.openSnackBar(error.error);
+
                 }
-            );
+            });
     }
 }
