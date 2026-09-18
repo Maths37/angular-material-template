@@ -1,6 +1,6 @@
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {AuthenticationService} from 'src/app/core/services/auth.service';
 import {NotificationService} from 'src/app/core/services/notification.service';
@@ -9,6 +9,7 @@ import {NotificationService} from 'src/app/core/services/notification.service';
     selector: 'app-password-reset',
     templateUrl: './password-reset.component.html',
     styleUrls: ['./password-reset.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PasswordResetComponent implements OnInit {

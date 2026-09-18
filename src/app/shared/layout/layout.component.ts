@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, inject, OnDestroy, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {Subscription, timer} from 'rxjs';
 
@@ -10,6 +10,7 @@ import {AuthGuard} from 'src/app/core/guards/auth.guard';
     selector: 'app-layout',
     templateUrl: './layout.component.html',
     styleUrls: ['./layout.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {

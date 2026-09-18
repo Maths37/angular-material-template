@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {NotificationService} from 'src/app/core/services/notification.service';
 import {Title} from '@angular/platform-browser';
 import {NGXLogger} from 'ngx-logger';
@@ -8,6 +8,7 @@ import {AuthenticationService} from 'src/app/core/services/auth.service';
     selector: 'app-dashboard-home',
     templateUrl: './dashboard-home.component.html',
     styleUrls: ['./dashboard-home.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DashboardHomeComponent implements OnInit {

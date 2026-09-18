@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {Router} from '@angular/router';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {Title} from '@angular/platform-browser';
@@ -9,6 +9,7 @@ import {NotificationService} from 'src/app/core/services/notification.service';
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LoginComponent implements OnInit {

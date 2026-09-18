@@ -1,5 +1,5 @@
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {NGXLogger} from 'ngx-logger';
 import {AuthenticationService} from 'src/app/core/services/auth.service';
 import {NotificationService} from 'src/app/core/services/notification.service';
@@ -10,6 +10,7 @@ import {SpinnerService} from 'src/app/core/services/spinner.service';
     selector: 'app-change-password',
     templateUrl: './change-password.component.html',
     styleUrls: ['./change-password.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ChangePasswordComponent implements OnInit {
